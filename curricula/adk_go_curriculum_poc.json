@@ -1,0 +1,276 @@
+{
+  "curriculum_id": "adk_go_bootcamp",
+  "version": "1.0",
+  "description": "A comprehensive guide to building AI Agents with ADK-Go, scalable from absolute beginners to Senior Go Engineers.",
+  "runtime_user_state": {
+    "user_id": "user_789_beta",
+    "likely_persona": "polyglot_programmer",
+    "background": "Chrome and TypeScript",
+    "interests": [
+      "Web",
+      "AI And Machine Learning"
+    ],
+    "skills_mastered": [],
+    "skills_fast_tracked": [],
+    "badges_earned": [],
+    "current_skill_node": "install_tools"
+  },
+  "user_personas": [
+    {
+      "id": "absolute_beginner",
+      "description": "Has never written a line of code. Needs terminal and basic programming concepts.",
+      "starting_node_id": "install_tools",
+      "assumed_knowledge": []
+    },
+    {
+      "id": "polyglot_programmer",
+      "description": "Experienced in Python/JS, but new to Go and new to ADK.",
+      "starting_node_id": "install_tools",
+      "assumed_knowledge": [
+        "client_server_architecture"
+      ]
+    },
+    {
+      "id": "senior_go_engineer",
+      "description": "Proficient in Go (structs, pointers, interfaces). Just needs to learn ADK.",
+      "starting_node_id": "adk_conceptual_overview",
+      "assumed_knowledge": [
+        "terminal_basics",
+        "client_server_architecture",
+        "go_basics",
+        "go_advanced"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "install_tools",
+      "title": "Installing Go and setting the GOPATH",
+      "category": "terminal_basics",
+      "dependencies": [],
+      "description": "Downloading the Go binary, running the installer, and verifying the installation.",
+      "fast_track_assessment": null,
+      "verification": {
+        "type": "environment_health_check",
+        "instructions_to_user": "1. Open your terminal.\n2. Run `go version` and paste the exact output here.\n3. Run `go env GOPATH` and paste the exact output here.\n",
+        "validation_script": "from user_chat_history import latest_user_message\nassert \"go version go1.\" in latest_user_message, \"Go is not installed or not in PATH.\"\nassert \"GOPATH\" not in latest_user_message or \"/\" in latest_user_message or \"\\\\\" in latest_user_message, \"GOPATH is not set correctly.\"\n"
+      }
+    },
+    {
+      "id": "terminal_and_go_run",
+      "title": "Navigating the Terminal and 'go run'",
+      "category": "terminal_basics",
+      "dependencies": [
+        "install_tools"
+      ],
+      "description": "Creating folders, navigating, and executing a simple Go script.",
+      "fast_track_assessment": null,
+      "verification": {
+        "type": "environment_health_check",
+        "instructions_to_user": "1. Create a folder named `hello_adk` and `cd` into it.\n2. Run `go mod init hello_adk`.\n3. Run `go run google.golang.org/adk/examples/hello@latest`.\n4. Paste the output here.\n",
+        "validation_script": "from user_chat_history import latest_user_message\nassert \"Hello,\" in latest_user_message, \"User could not execute the remote Go script.\"\n"
+      }
+    },
+    {
+      "id": "go_syntax_fundamentals",
+      "title": "Variables, Types, and Functions in Go",
+      "category": "go_basics",
+      "dependencies": [
+        "terminal_and_go_run"
+      ],
+      "description": "Strict typing vs dynamic typing, how to write basic functions.",
+      "fast_track_assessment": "Write a Go function `Multiply(a int, b int) int` that returns the product.",
+      "verification": {
+        "type": "code_extraction_and_test",
+        "validation_script": "// Simulated test execution of user code\nassert Multiply(3, 4) == 12\n"
+      }
+    },
+    {
+      "id": "go_structs",
+      "title": "Go Structs (Grouping Data)",
+      "category": "go_basics",
+      "dependencies": [
+        "go_syntax_fundamentals"
+      ],
+      "description": "Crucial because ADK uses Structs heavily for Agent configuration and State.",
+      "fast_track_assessment": "How do you define a struct named `AgentConfig` with a `ModelName` string field?",
+      "verification": {
+        "type": "code_extraction_and_test",
+        "validation_script": "// Simulated check that AgentConfig struct exists and has ModelName field\n"
+      }
+    },
+    {
+      "id": "go_pointers",
+      "title": "Pointers (& and *)",
+      "category": "go_advanced",
+      "dependencies": [
+        "go_structs"
+      ],
+      "description": "ADK-Go often passes State or Session context by pointer to allow modification.",
+      "fast_track_assessment": "What is the difference between passing `State` and `*State` to a function in terms of mutability?",
+      "verification": {
+        "type": "llm_rubric",
+        "pass_criteria": [
+          "Mentions memory addresses, avoiding copying the whole object, or that * allows modifying the original data."
+        ]
+      }
+    },
+    {
+      "id": "go_interfaces",
+      "title": "Go Interfaces",
+      "category": "go_advanced",
+      "dependencies": [
+        "go_pointers"
+      ],
+      "description": "ADK-Go uses interfaces to define Tools (e.g., fulfilling the Tool interface vs just passing a function callback).",
+      "fast_track_assessment": "Does a Go struct need to use an 'implements' keyword to satisfy an interface?",
+      "verification": {
+        "type": "llm_rubric",
+        "pass_criteria": [
+          "No, it's implicit / structural typing."
+        ]
+      }
+    },
+    {
+      "id": "client_server_architecture",
+      "title": "Clients, Servers, and the MCP Paradigm",
+      "category": "client_server_architecture",
+      "dependencies": [],
+      "description": "High-level concept: AI Agents act as Clients asking external Servers (Tools) for data.",
+      "fast_track_assessment": "In the context of the Model Context Protocol (MCP), is the LLM usually the Server exposing tools, or the Client requesting them?",
+      "verification": {
+        "type": "llm_rubric",
+        "pass_criteria": [
+          "Client requesting them"
+        ]
+      }
+    },
+    {
+      "id": "adk_conceptual_overview",
+      "title": "Core Primitives of ADK",
+      "category": "adk_core",
+      "dependencies": [
+        "client_server_architecture",
+        "go_interfaces"
+      ],
+      "description": "Understanding Agent, Tool, Session, State, and Runner primitives conceptually.",
+      "fast_track_assessment": "In ADK, what is the conceptual difference between the 'Session' (and Events) versus the 'State'?",
+      "verification": {
+        "type": "llm_rubric",
+        "pass_criteria": [
+          "Events/Session track the conversation history, State tracks working memory/variables."
+        ]
+      }
+    },
+    {
+      "id": "adk_llmagent_creation",
+      "title": "Initializing the LlmAgent",
+      "category": "adk_core",
+      "dependencies": [
+        "adk_conceptual_overview"
+      ],
+      "description": "Importing ADK, setting up the Gemini API key, and instantiating an LlmAgent.",
+      "fast_track_assessment": null,
+      "verification": {
+        "type": "code_extraction_and_test",
+        "instructions_to_user": "Write a Go script that initializes a basic ADK `LlmAgent` using `gemini-2.0-flash`.",
+        "validation_script": "go test agent_init_test.go"
+      }
+    },
+    {
+      "id": "adk_function_tools",
+      "title": "Creating FunctionTools",
+      "category": "adk_core",
+      "dependencies": [
+        "adk_llmagent_creation"
+      ],
+      "description": "Wrapping a standard Go function (like fetching weather) into an ADK Tool so the LLM can call it.",
+      "fast_track_assessment": null,
+      "verification": {
+        "type": "code_extraction_and_test",
+        "instructions_to_user": "Create a simple `GetWeather` Fake Tool and attach it to your LlmAgent.",
+        "validation_script": "go test tool_integration_test.go"
+      }
+    },
+    {
+      "id": "adk_runner_execution",
+      "title": "Orchestration with the Runner",
+      "category": "adk_core",
+      "dependencies": [
+        "adk_function_tools"
+      ],
+      "description": "Using the Runner engine to manage the execution loop (LLM -> Tool -> LLM -> Output).",
+      "fast_track_assessment": null,
+      "badge_award": {
+        "name": "ADK Core Orchestrator",
+        "callback_url": "https://api.yourdomain.com/badges/award/adk-core"
+      },
+      "verification": {
+        "type": "end_to_end_test",
+        "instructions_to_user": "Write the `Runner.Run()` block to execute your LlmAgent and ask it for the weather.",
+        "validation_script": "go run test_runner.go"
+      }
+    },
+    {
+      "id": "adk_workflow_overview",
+      "title": "Agent Modes: LlmAgent vs Workflow Agents",
+      "category": "adk_workflows",
+      "dependencies": [
+        "adk_runner_execution"
+      ],
+      "description": "Understanding that LlmAgents are dynamic/non-deterministic, whereas Workflow agents (Sequential, Parallel, Loop) are fixed routing rails.",
+      "fast_track_assessment": "If I want three agents to gather research simultaneously before passing their results to a final summarizer, which two workflow agents would I use?",
+      "verification": {
+        "type": "llm_rubric",
+        "pass_criteria": [
+          "ParallelAgent (for the research) and SequentialAgent (to route to the summarizer)"
+        ]
+      }
+    },
+    {
+      "id": "adk_sequential_agent",
+      "title": "Building a SequentialAgent",
+      "category": "adk_workflows",
+      "dependencies": [
+        "adk_workflow_overview"
+      ],
+      "description": "Chaining Agent A -> Agent B -> Agent C in a fixed pipeline.",
+      "fast_track_assessment": null,
+      "verification": {
+        "type": "code_extraction_and_test",
+        "instructions_to_user": "Create two simple LlmAgents and put them into a SequentialAgent pipeline.",
+        "validation_script": "go test sequential_test.go"
+      }
+    },
+    {
+      "id": "adk_parallel_agent",
+      "title": "Building a ParallelAgent",
+      "category": "adk_workflows",
+      "dependencies": [
+        "adk_workflow_overview"
+      ],
+      "description": "Executing tasks concurrently. Excellent for fan-out tasks like analyzing multiple documents.",
+      "fast_track_assessment": null,
+      "verification": {
+        "type": "code_extraction_and_test",
+        "instructions_to_user": "Create a ParallelAgent containing two sub-agents.",
+        "validation_script": "go test parallel_test.go"
+      }
+    },
+    {
+      "id": "adk_loop_agent",
+      "title": "Building a LoopAgent",
+      "category": "adk_workflows",
+      "dependencies": [
+        "adk_workflow_overview"
+      ],
+      "description": "Executing an agent repeatedly until a specific condition in the State breaks the loop.",
+      "fast_track_assessment": null,
+      "verification": {
+        "type": "code_extraction_and_test",
+        "instructions_to_user": "Create a LoopAgent that runs 3 times before breaking.",
+        "validation_script": "go test loop_test.go"
+      }
+    }
+  ]
+}
