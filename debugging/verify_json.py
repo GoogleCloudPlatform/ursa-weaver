@@ -61,11 +61,5 @@ def verify(json_path=None):
         for err in errors:
             print(err)
 
-    if not errors:
-        print("Verification successful: No integrity or connectivity issues found.")
-    else:
-        for err in errors:
-            print(err)
-
 if __name__ == "__main__":
     verify()

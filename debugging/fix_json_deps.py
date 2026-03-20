@@ -33,5 +33,5 @@ def fix_dependencies(file_path):
         json.dump(data, f, indent=2)
 
 if __name__ == "__main__":
-    fix_dependencies('curricula/firebase_curriculum.json')
-    print("Fixed dependencies in curricula/firebase_curriculum.json")
+    fix_dependencies('curricula/adk_go_curriculum_poc.json')
+    print("Fixed dependencies in curricula/adk_go_curriculum_poc.json")

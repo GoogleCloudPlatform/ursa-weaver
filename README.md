@@ -1,3 +1,19 @@
+<!--
+Copyright 2026 Google LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
 # Pathweaver: Agentic AI Tutoring System
 
 Pathweaver is a framework for building highly personalized, graph-based AI tutoring sessions. Unlike linear "next lesson" systems, Pathweaver treats technical skills as nodes in a directed graph, allowing a tutor to navigate unlocked paths based on a learner's mastered dependencies.
@@ -16,7 +32,7 @@ Pathweaver is a framework for building highly personalized, graph-based AI tutor
 
 ## 📂 Repository Structure
 
-- `curricula/`: The "knowledge base" containing JSON-based skill graphs (e.g., Firebase, Go ADK).
+- `curricula/`: The "knowledge base" containing JSON-based skill graphs (e.g., Go ADK).
 - `users/`: Unified JSON files for individual learners. (Git-ignored to protect privacy).
 - `debugging/`: Verification scripts and a comprehensive test suite for graph integrity.
 - `.agents/skills/llm_tutor/`: The implementation protocol for the AI tutor.
@@ -32,7 +48,7 @@ Pathweaver is a framework for building highly personalized, graph-based AI tutor
 
 ### 2. How to Run
 Invoke the `llm_tutor` skill within your agent's environment:
-1. Provide the path to a curriculum file: `curricula/firebase_curriculum.json`.
+1. Provide the path to a curriculum file: `curricula/adk_go_curriculum_poc.json`.
 2. Provide your `user_id` (this will load or create your unified state file in `users/`).
 3. Follow the tutor's guidance as it identifies unlocked skills and presents choices.
 

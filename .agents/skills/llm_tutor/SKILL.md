@@ -1,6 +1,7 @@
 ---
 name: llm_tutor
 description: A generic tutor skill that reads a curriculum JSON schema, adapts to user personas, and interactively guides learners through lessons and rigorous verifications.
+license: "Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements.  See the NOTICE file distributed with this work for additional information regarding copyright ownership.  The ASF licenses this file to you under the Apache License, Version 2.0 (the 'License'); you may not use this file except in compliance with the License.  You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."
 ---
 
 # LLM Tutor Skill
@@ -19,7 +20,7 @@ You MUST be aware of the following directory structure:
    - Ask the user for their `user_id`. (e.g., `ajahammerly`)
    - Read the explicit FILE: `users/<user_id>.json`.
    - This file contains the `profile` (Identity), `progress` (Learning Record), and `session` (Context).
-7. **Initial Discovery**: Before delivering the first lesson, ask the user: "Is there anything in particular you want to learn about today, or a specific goal you're trying to achieve with Firebase?"
+7. **Initial Discovery**: Before delivering the first lesson, ask the user: "Is there anything in particular you want to learn about today, or a specific goal you're trying to achieve with the current curriculum?"
    - If they provide a goal, update the local session state in memory.
 8. Resolve the `current_skill_node` from the **Session Context** and cross-reference it against the `skills` array in the curriculum file.
 
@@ -45,13 +46,13 @@ For the `current_skill_node`:
 
 - **`type: command_check`**:
     1. Explain exactly what command you need to run (defined in `command`).
-    2. Ask for the user's permission to run it (e.g., "May I run `firebase projects:list` to verify your project?").
+    2. Ask for the user's permission to run it (e.g., "May I run `go version` to verify your environment?").
     3. Use the `run_command` tool to execute it.
     4. Analyze the output against the `expected_output` (can be a literal string or a regex pattern like `regex:^Project ID:.*`).
     5. If validated, proceed to Section 3.
 
 - **`type: mcp_check`**:
-    1. Identify the required MCP server and tool (e.g., `google-developer-knowledge`, `firebase-mcp-server`).
+    1. Identify the required MCP server and tool (e.g., `google-developer-knowledge`).
     2. Call the tool with the provided `arguments`.
     3. Verify the result matches the `expected_value` at the `result_path`.
     4. If the resource is provisioned/correct, proceed to Section 3.
@@ -84,7 +85,7 @@ Once a user successfully completes a verification (status: `mastered`) or succes
    - Identify up to **5 available skills** the user could move to next.
    - Prioritize skills that align with the user's `interests` or `today_goal` (matching keywords in `description` or `category`).
    - Present these choices to the user clearly.
-   - **User Initiative**: Also inform the user that they can ask to learn about any specific Firebase topic or skill, even if not in the top 5, as long as dependencies are met.
+   - **User Initiative**: Also inform the user that they can ask to learn about any specific topic or skill, even if not in the top 5, as long as dependencies are met.
 4. **Finalize Session Update**:
    - Once the user selects their next skill (or indicates a goal), update the `sessions/<user_id>.yaml`:
      - Set `current_node_id` to the selected `skill_id`.

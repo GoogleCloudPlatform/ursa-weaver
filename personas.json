@@ -3,14 +3,14 @@
   "user_personas": [
     {
       "id": "absolute_beginner",
-      "description": "New to cloud development and Firebase.",
-      "starting_node_id": "terminal_basics",
+      "description": "New to cloud development and AI Agents.",
+      "starting_node_id": "install_tools",
       "assumed_knowledge": []
     },
     {
       "id": "polyglot_programmer",
-      "description": "Experienced developer new to Firebase.",
-      "starting_node_id": "firebase_project_creation",
+      "description": "Experienced developer new to ADK.",
+      "starting_node_id": "install_tools",
       "assumed_knowledge": [
         "terminal_basics",
         "json_fundamentals"
