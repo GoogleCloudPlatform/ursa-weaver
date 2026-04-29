@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# Usrsa Weaver: Agentic AI Tutoring System
+# Ursa Weaver: Agentic AI Tutoring System
 
 Ursa Weaver is a framework for building highly personalized, graph-based AI tutoring sessions. Unlike linear "next lesson" systems, Ursa Weaver treats technical skills as nodes in a directed graph, allowing a tutor to navigate unlocked paths based on a learner's mastered dependencies.
 
